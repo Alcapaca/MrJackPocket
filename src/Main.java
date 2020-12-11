@@ -1,6 +1,9 @@
 import java.util.ArrayDeque;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Deque;
+import java.util.List;
+import java.util.Random;
 
 public class Main {
 
@@ -20,19 +23,21 @@ public class Main {
 		AlibiCard Card8 = new AlibiCard("Sgt Goodley", 0);
 		AlibiCard Card9 = new AlibiCard("William Gull", 1);
 		//Ajout des cartes alibi à l'ArrayDeque
-		ArrayDeque <Object> Card = new ArrayDeque<>();
-		Card.push(Card1);
-		Card.push(Card2);
-		Card.push(Card3);
-		Card.push(Card4);
-		Card.push(Card5);
-		Card.push(Card6);
-		Card.push(Card7);
-		Card.push(Card8);
-		Card.push(Card9);
+		List <Object> Card = new ArrayList<>();
+		Card.add(Card1);
+		Card.add(Card2);
+		Card.add(Card3);
+		Card.add(Card4);
+		Card.add(Card5);
+		Card.add(Card6);
+		Card.add(Card7);
+		Card.add(Card8);
+		Card.add(Card9);
+		Collections.shuffle(Card);
+		ArrayDeque <Object> pile = new ArrayDeque <Object> (Card);
 		//Pioche des cartes
 		for(int counter = 0; counter < 10; counter ++){
-			takeCard(Card);
+			takeCard(pile);
 		}
 		
 		
@@ -40,7 +45,7 @@ public class Main {
 
 	}
 		//Take a card from the AlibiCard pile
-		public static ArrayDeque takeCard(ArrayDeque Card) {
+		public static ArrayDeque<Object> takeCard(ArrayDeque<Object> Card) {
 	if (Card.isEmpty()){
 		//Test, is the pile empty
 		 System.out.println("The pile is empty");
@@ -51,4 +56,5 @@ public class Main {
 	 }
 	return Card;
 	}
+		
 }
