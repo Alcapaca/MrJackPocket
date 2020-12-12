@@ -10,6 +10,9 @@ public class Main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
+		
+		Game game = new Game();
+		game.initialiseBoard();
 
 		
 		// Create Alibi Crads
@@ -39,6 +42,7 @@ public class Main {
 		for(int counter = 0; counter < 10; counter ++){
 			takeCard(pile);
 		}
+		
 		
 		
 		
