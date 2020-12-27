@@ -30,22 +30,22 @@ public class Game {
 		ArrayDeque <String> pile = new ArrayDeque <String> (Names);
 		Random random = new Random();
 		int counter = 1;
-		for (int row = 1;row<4;row ++) {
-			for(int column = 1;column <4 ; column ++) {
+		for (int column = 1;column<4;column ++) {
+			for(int row = 1;row <4 ; row ++) {
 				switch(counter) {
-				case 1 : District streetTile1 = new District(true,pile.pop(),1,(Object[][]) board[row][column]);
+				case 1 : District streetTile1 = new District(true,pile.pop(),1,));
 				System.out.println(streetTile1);
 				break;
-				case 2 : District streetTile2 = new District(true,pile.pop(),random.nextInt(3)+1,(Object[][]) board[row][column]);
+				case 2 : District streetTile2 = new District(true,pile.pop(),random.nextInt(3)+1,b1);
 				System.out.println(streetTile2);
 				break;
-				case 3 : District streetTile3 = new District(true,pile.pop(),3,(Object[][]) board[row][column]);
+				case 3 : District streetTile3 = new District(true,pile.pop(),3,c1);
 				System.out.println(streetTile3);
 				break;
-				case 4 : District streetTile4 = new District(true,pile.pop(),random.nextInt(3)+1,(Object[][]) board[row][column]);
+				case 4 : District streetTile4 = new District(true,pile.pop(),random.nextInt(3)+1,a2);
 				System.out.println(streetTile4);
 				break;
-				case 5 : District streetTile5 = new District(true,pile.pop(),random.nextInt(3)+1,(Object[][]) board[row][column]);
+				case 5 : District streetTile5 = new District(true,pile.pop(),random.nextInt(3)+1,b2);
 				System.out.println(streetTile5);
 				break;
 				case 6 : District streetTile6 = new District(true,pile.pop(),random.nextInt(3)+1,(Object[][]) board[row][column]);
@@ -71,6 +71,8 @@ public class Game {
 		
 		}
 	}
+
+
 	
 
 	

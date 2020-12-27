@@ -1,8 +1,10 @@
 
 public class ActionToken {
+	
 	private String name;
 	private int face;
 	
+
 	
 	public ActionToken(String name, int face) {
 		
