@@ -2,9 +2,9 @@
 	
 	public enum Detective{
 		
-		HOLMES(12),
-		WATSON(4),
-		TOBY(8);
+		HOLMES(11),
+		WATSON(3),
+		TOBY(7);
 		
 	
 	private int position;

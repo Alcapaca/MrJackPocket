@@ -4,9 +4,9 @@ public class District{
 	private boolean visibleSuspect;
 	private String suspectName;
 	private int wallPlacement;
-	private Position position;
+	private int position;
 	
-	public District (boolean visibleSuspect, String suspectName, int wallPlacement, Position position) {
+	public District (boolean visibleSuspect, String suspectName, int wallPlacement, int position) {
 		this.visibleSuspect = true;
 		this.suspectName = suspectName;
 		this.wallPlacement = wallPlacement;
