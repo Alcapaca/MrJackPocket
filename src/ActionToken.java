@@ -4,7 +4,7 @@ public class ActionToken {
 	private int face;
 	
 	
-	public CardToken(String name, int face) {
+	public ActionToken(String name, int face) {
 		
 	this.name = name;
 	this.face = face;
@@ -13,5 +13,6 @@ public class ActionToken {
 	public String toString() {
         return name + " " + face;
     }
+	
 	
 }
