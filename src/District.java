@@ -4,13 +4,13 @@ public class District{
 	private boolean visibleSuspect;
 	private String suspectName;
 	private int wallPlacement;
-	private Object board;
+	private Position position;
 	
-	public District (boolean visibleSuspect, String suspectName, int wallPlacement, Object[][] board) {
+	public District (boolean visibleSuspect, String suspectName, int wallPlacement, Position position) {
 		this.visibleSuspect = true;
 		this.suspectName = suspectName;
 		this.wallPlacement = wallPlacement;
-		this.board = board;
+		this.position = position;
 		
 	}
 
@@ -18,7 +18,7 @@ public class District{
 	
 	
 	public String toString() {
-		return visibleSuspect + " " + suspectName + " "+ wallPlacement + " " + board;
+		return visibleSuspect + " " + suspectName + " "+ wallPlacement + " " + position;
 		}
 	
 	
