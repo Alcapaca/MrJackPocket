@@ -1,9 +1,8 @@
-import java.util.ArrayDeque;
 import java.util.Scanner;
 
-import com.mrjack.Game;
-
 public class AlibiSherlock extends ActionToken{
+	
+	}
 	private String name;
 	private int face;
 	
