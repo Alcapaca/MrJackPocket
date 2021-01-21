@@ -1,32 +1,24 @@
 public enum AlibiCard{
 	
-	InspectorLestrade(0),
-	MissStealthy(1),
-	JeremyBert(1),
-	JohnSmith(1),
-	JohnPizer(1),
-	JosephLane(1),
-	Madame(2),
-	SgtGoodley(0),
-	WilliamGull(1);
+	InspectorLestrade,
+	MissStealthy,
+	JeremyBert,
+	JohnSmith,
+	JohnPizer,
+	JosephLane,
+	Madame,
+	SgtGoodley,
+	WilliamGull;
 	
 
-	private final int hourglass;
-
-	AlibiCard(int hourglass) {
-		this.hourglass = hourglass;
-	}
-	
 	public int returnHourglass() {
-		return hourglass;
+		int[] hourglass = {0,1,1,1,1,1,2,0,1};
+		return hourglass[this.ordinal()];
 	}
-	
-	public String returnSuspect() {
-		return this.name();
-	}
+		
 	
 	public String toString() {
-        return this.name()+ " " + hourglass;
+        return this.name();
     }
 
 }

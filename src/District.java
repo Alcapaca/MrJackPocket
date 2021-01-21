@@ -1,10 +1,11 @@
 
 public class District{
+	
 
 	private boolean visibleSuspect;
 	private AlibiCard suspectName;
 	private int wallPlacement;
-	private int position;
+
 	
 	public District (boolean visibleSuspect, AlibiCard suspectName) {
 		this.visibleSuspect = true;
@@ -15,19 +16,20 @@ public class District{
 		this.wallPlacement = wallPlacement;
 	}
 	
-	public void setPosition (int position) {
-		this.position = position;
-	}
 	
 	public void rotate(int times) {
 		this.wallPlacement = (wallPlacement + times) % 4;
 	}
 	
 	public AlibiCard getAlibiCard() {
+	
 		return suspectName;
-	}
+		
+		}
+	
 	
 	public boolean isSuspect() {
+		
 		return visibleSuspect;
 	}
 	
@@ -35,14 +37,17 @@ public class District{
 		return wallPlacement;
 	}
 	
-	public int getPosition() {
-		return position;
+	
+	
+	public void isSeen() {
+		this.visibleSuspect = false;
 	}
 	
 	
 	
+	
 	public String toString() {
-		return visibleSuspect + " " + suspectName + " "+ wallPlacement + " " + position;
+		return visibleSuspect + " " + suspectName + " "+ wallPlacement + " ";
 		}
 	
 	

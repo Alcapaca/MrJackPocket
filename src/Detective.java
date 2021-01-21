@@ -2,9 +2,10 @@
 	
 	public enum Detective{
 		
-		HOLMES(11),
-		WATSON(3),
-		TOBY(7);
+		WATSON(2),
+		TOBY(7),
+		SHERLOCK(11);
+		
 		
 	
 	private int position;
@@ -18,8 +19,8 @@
 		return position;
 	}
 	
-	public void moveTo(int distance) {
-		this.position = (position + distance) % 12;
+	public void moveTo(int nbCell) {
+		this.position = (position + nbCell) % 12;
 	}
 	
 	
