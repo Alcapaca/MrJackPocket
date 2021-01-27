@@ -1,8 +1,8 @@
 
 public enum Hourglass {
 	totalhourglass(0),
-	turnhourglass(0),
 	cardhourglass(0);
+	
 	
 	private int number;
 	

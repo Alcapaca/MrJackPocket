@@ -2,7 +2,7 @@
 	
 	public enum Detective{
 		
-		WATSON(2),
+		WATSON(3),
 		TOBY(7),
 		SHERLOCK(11);
 		

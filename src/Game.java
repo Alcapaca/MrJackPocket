@@ -2,13 +2,15 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.EnumSet;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
+
+import javax.swing.JDialog;
+import javax.swing.JLabel;
 
 
 //	    0  1  2  	
@@ -27,10 +29,6 @@ import java.util.concurrent.TimeUnit;
 	
 public class Game {
 		
-	
-	public void play() {
-        //pour jouer au jeu
-    }
 	
 	
 	public ArrayList<District> isSuspectVisible(ArrayList <District> Board) {
@@ -355,17 +353,7 @@ public class Game {
 			
 		}
 	
-	public void MrJackInitialise(AlibiCard mrJack) {
-		System.out.println("Mr Jack, look at the screen");
-		try {
-			TimeUnit.SECONDS.sleep(1);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println("Mr Jack, your identity for this game is : "+ mrJack.toString());
-		
-	}
+	
 	
 	public ArrayList<ActionToken> throwActionTokens() {
 		
@@ -382,6 +370,7 @@ public class Game {
 			System.out.println(tokens.get(i));}
 		return tokens;
 		
+		
 	}
 	
 	public ArrayList<ActionToken> turnOverActionToken(){
@@ -393,11 +382,12 @@ public class Game {
 		for (int i = 0; i<tokens.size(); i++) {
 			System.out.println(tokens.get(i));}
 		return tokens;
+		
 	}
 	
 	
 	
-	public ArrayList <ActionToken> updateActionTokens(ArrayList <ActionToken> tokens, int chosenToken){
+	public void updateActionTokens(ArrayList <ActionToken> tokens, int chosenToken){
 		
 		tokens.set(chosenToken-1, null);
 		for (int i = 0; i<tokens.size(); i++) {
@@ -405,7 +395,7 @@ public class Game {
 				continue;
 			}
 			else {			System.out.println(tokens.get(i));}}
-		return tokens;
+		
 		
 	}
 	
@@ -466,7 +456,7 @@ public class Game {
 		return ans;
 		}
 	
-	public ArrayList <District> changeVisibleSuspects(ArrayList <District> Board, ArrayList <District> Visible,AlibiCard MrJack){
+	public void changeVisibleSuspects(ArrayList <District> Board, ArrayList <District> Visible,AlibiCard MrJack){
 		
 		ArrayList <District> invisible = new ArrayList <District>(Board);
 		boolean ans = isMrJackVisible(Board, Visible, MrJack);
@@ -482,16 +472,25 @@ public class Game {
 			}
 			for (int i = 0 ; i < invisible.size(); i++) {
 				invisible.get(i).isSeen();
+				if (invisible.get(i).getAlibiCard().equals(AlibiCard.JosephLane)){
+					invisible.get(i).setWallPlacement(4);
+				}
 			}
-			Hourglass.turnhourglass.addHourglass(0);
+			
 		}
 		else {
 			for (int i = 0 ; i < Visible.size(); i++) {
 				Visible.get(i).isSeen();
+				if (Visible.get(i).getAlibiCard().equals(AlibiCard.JosephLane)){
+					Visible.get(i).setWallPlacement(4);
+				}
 			}
-			Hourglass.turnhourglass.addHourglass(1);
+			
+			Hourglass.totalhourglass.addHourglass(1);
 		}
-		return Board;
+		
+		
+		
 			
 		}
 	
@@ -537,9 +536,25 @@ public class Game {
 				
 			}
 			else {
+				System.out.println("Course poursuite");
 				coursePoursuite = true;
 			}
 		}
+		else if (MrJackWins == 1) {
+		
+		JDialog alibiCardWindow = new JDialog();
+		
+		alibiCardWindow.add(new JLabel(String.format("Mr Jack a remporté la partie")));
+		alibiCardWindow.setSize(400,400);
+		alibiCardWindow.setAlwaysOnTop(true);
+		alibiCardWindow.setVisible(true);}
+		else if (DetectiveWins == 1) {
+			JDialog alibiCardWindow = new JDialog();
+			
+			alibiCardWindow.add(new JLabel(String.format("Le Detective a remporté la partie")));
+			alibiCardWindow.setSize(400,400);
+			alibiCardWindow.setAlwaysOnTop(true);
+			alibiCardWindow.setVisible(true);}
 		
 		
 		//are suspects still visible

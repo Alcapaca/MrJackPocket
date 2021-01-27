@@ -99,7 +99,7 @@ public enum ActionToken{
 			cellToMove = scanner.nextInt();
 		}
 		
-		System.out.println("Dans quelle orientation voulez vous la mettre ? (Choisissez un chiffre entre 1 et 3 ");
+		System.out.println("De combien voulez vous la tourner ? (Choisissez un chiffre entre 0 et 3 ");
 		int orientation = scanner.nextInt();
 		while (orientation<0 || orientation > 4) {
 			System.out.println("Veuillez entrer un chiffre entre 1 et 3 ");
@@ -108,20 +108,29 @@ public enum ActionToken{
 
 		switch (cellToMove) {
 		case 0 :  board.get(0).rotate(orientation);
+		break;
 		case 1 :  board.get(1).rotate(orientation);
+		break;
 		case 2 :  board.get(2).rotate(orientation);
+		break;
 		case 3 :  board.get(3).rotate(orientation);
+		break;
 		case 4 :  board.get(4).rotate(orientation);
+		break;
 		case 5 :  board.get(5).rotate(orientation);
+		break;
 		case 6 :  board.get(6).rotate(orientation);
+		break;
 		case 7 :  board.get(7).rotate(orientation);
+		break;
 		case 8 :  board.get(8).rotate(orientation);
+		break;
 		
 		}
 		
 	}
 	
-	public ArrayList<District> switchCard(ArrayList <District> board) {
+	public void switchCard(ArrayList <District> board) {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Quelle est la première case que voulez vous bouger ? (entrez un chiffre entre 0 et 8 ");
 		int cellToSwitch1 = scanner.nextInt();
@@ -137,7 +146,7 @@ public enum ActionToken{
 		}
 		
 		Collections.swap(board, cellToSwitch1, cellToSwitch2);
-		return board;
+		
 	}
 
 	

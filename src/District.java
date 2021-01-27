@@ -21,6 +21,11 @@ public class District{
 		this.wallPlacement = (wallPlacement + times) % 4;
 	}
 	
+	public void isSeen() {
+		this.visibleSuspect = false;
+	}
+	
+	
 	public AlibiCard getAlibiCard() {
 	
 		return suspectName;
@@ -36,13 +41,7 @@ public class District{
 	public int getWallPlacement() {
 		return wallPlacement;
 	}
-	
-	
-	
-	public void isSeen() {
-		this.visibleSuspect = false;
-	}
-	
+
 	
 	
 	
