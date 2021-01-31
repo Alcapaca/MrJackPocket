@@ -17,41 +17,9 @@ import java.awt.event.*;
 
 public class Graphics {
 	
-	private static JButton Smith;
-
-	public static void initialisationBoard(ArrayList <District> board, ArrayList<ActionToken> tokens, int turnCounter, AlibiCard MrJack, String currentPlayer) throws IOException {
+	
+	
 		
-			  
-		
-		
-		
-        
-        /*
-        BufferedImage JAlibiCard = ImageIO.read(new File("InspLestradeJAlibi.png"));
-        JAlibi JAlibi = new JAlibi(new ImageIcon(JAlibiCard));       
-        //JAlibi.setPreferredSize(new Dimension(150,));
-        rightPanel.add(JAlibi,BorderLayout.NORTH);
-        JPanel centerRightPanel = new JPanel();
-        rightPanel.add(centerRightPanel,BorderLayout.SOUTH);
-        centerRightPanel.setLayout(new GridLayout(8, 1));
-        
-        BufferedImage hourglassCard = ImageIO.read(new File("Jeton1-Face1.png"));
-        Hourglass hourglass = new Hourglass(new ImageIcon(hourglassCard));  
-        hourglass.setPreferredSize(new Dimension(150,150));
-        centerRightPanel.add(hourglass, BorderLayout.CENTER);
-        BufferedImage hourglassCard1 = ImageIO.read(new File("Jeton1-Face1.png"));
-        Hourglass hourglass1 = new Hourglass(new ImageIcon(hourglassCard1));  
-        hourglass1.setPreferredSize(new Dimension(100,100));
-        centerRightPanel.add(hourglass1, BorderLayout.SOUTH);
-        */
-
-        
-	}
-	
-	
-	
-	
-	
 	public static JPanel updateBoardGraphics(JPanel centerPanel, JButton Watson, JButton Toby, JButton Sherlock, ArrayList<District> board,JFrame frame) throws IOException {
 		
 		centerPanel.removeAll();
@@ -143,7 +111,7 @@ public class Graphics {
 	
 	
 	public static BufferedImage rotate(int amountOfTimes, File Name) throws IOException {
-			
+			//Retourne une image tournée
 			BufferedImage buttonIcon = ImageIO.read(Name);
 			int width = buttonIcon.getWidth();
 			int height = buttonIcon.getHeight();
@@ -185,8 +153,8 @@ public class Graphics {
 		
 		public static JButton updateBoard(int i, ArrayList <District> board) throws IOException {
 				
-			
-		    
+			//retourne la bonne image à insérer au bon endroit dans l'orientation voulue
+		    // Utilisé dans la méthode UpdateBoardGraphics ci-dessous
 				if (board.get(i).getAlibiCard() == AlibiCard.Madame){
 					if (board.get(i).isSuspect() == false) {
 						

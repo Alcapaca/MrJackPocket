@@ -6,6 +6,7 @@ public class District{
 	private AlibiCard suspectName;
 	private int wallPlacement;
 
+	//Ce code est très bien expliqué dans notre rapport, n'hésitez pas à le lire ;)
 	
 	public District (boolean visibleSuspect, AlibiCard suspectName) {
 		this.visibleSuspect = true;

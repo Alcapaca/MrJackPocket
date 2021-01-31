@@ -4,35 +4,41 @@ import java.util.Random;
 import java.util.Scanner;
 
 public enum ActionToken{
-	actionToken1(1),
-	actionToken2(1),
-	actionToken3(1),
-	actionToken4(1);
+	actionToken1(1), //Watson: Face1, Toby :Face 2
+	actionToken2(1), //Sherlock : Face 1, Piocher : Face 2
+	actionToken3(1), //Bouger les detectives : Face 1 , Rotate : Face 2
+	actionToken4(1); //Rotate : face 1 ou echanger deux tuiles : face 2
 	
 	private int face;
 
+	//Constructeur
 	ActionToken(int face) {
-	
 	this.face = face;
 	}	
 	
+	//getter
 	public int getFace() {
 		return face;
 	}
 	
+	//setter random
 	public void randomFace() {
 		Random random = new Random();
 		this.face = random.nextInt(2)+1;		
 	}
 	
+	//setter tourner la face
 	public void turnOverToken() {
 		this.face = ((this.face)%2)+1;
 	}
+	
 	
 	public void tobyMove () {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("De combien de cases voulez vous bouger Toby (On tourne dans le sens des aiguilles d'une montre) : 1 ou 2 ? ");
 		int nbCell = scanner.nextInt();
+		//Les detectives doivent bouger entre 1 et 2 cases d'après les règles
+		//Ce commentaire est valable pour tous les detectives
 		while (nbCell < 1 || nbCell > 2) {
 			System.out.println("Veuillez entrer les chiffres 1 ou 2: ");
 			nbCell = scanner.nextInt();
@@ -41,6 +47,7 @@ public enum ActionToken{
 		
 		Detective.TOBY.moveTo(nbCell);
 	}
+	
 	
 	public void watsonMove () {
 		Scanner scanner = new Scanner(System.in);
@@ -67,6 +74,7 @@ public enum ActionToken{
 	}
 	
 	public void moveDetective() {
+		//Cette action fait bouger un des detectives (au choix) de 0 ou 1 case
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Quel personnage voulez-vous bouger : 1 -Sherlock, 2- Watson, 3-Tobby ? ");
 		int CharToMove = scanner.nextInt();
@@ -83,8 +91,11 @@ public enum ActionToken{
 		
 		switch(CharToMove) {
 		case 1: Detective.SHERLOCK.moveTo(nbCell);
+		break;
 		case 2: Detective.WATSON.moveTo(nbCell);
+		break;
 		case 3: Detective.TOBY.moveTo(nbCell);
+		break;
 		}
 	}
 	
@@ -92,6 +103,7 @@ public enum ActionToken{
 	
 	public void Rotate(ArrayList <District >board) {
 		Scanner scanner = new Scanner(System.in);
+		//Tourne une case de x fois 90 degrés
 		System.out.println("Quelle case voulez vous bouger ? (entrez un chiffre entre 0 et 8) ");
 		int cellToMove = scanner.nextInt();
 		while (cellToMove<0 || cellToMove > 8) {
@@ -131,6 +143,8 @@ public enum ActionToken{
 	}
 	
 	public void switchCard(ArrayList <District> board) {
+		
+		//Echange deux cartes entre elles.
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Quelle est la première case que voulez vous bouger ? (entrez un chiffre entre 0 et 8 ");
 		int cellToSwitch1 = scanner.nextInt();

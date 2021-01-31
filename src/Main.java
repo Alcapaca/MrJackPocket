@@ -42,7 +42,7 @@ public class Main {
 		
 		int turnCounter = 1;
 		boolean coursePoursuite = false;
-		
+		boolean gameEnd = false;
 		
 		
 		//Initialisation de la Pile de cartes
@@ -51,7 +51,7 @@ public class Main {
 		ArrayDeque<AlibiCard> pile = new ArrayDeque <AlibiCard> (Cards);
 		
 		//Initialisation du perso de Mr Jack
-		AlibiCard MrJack = MrJack(pile);
+		AlibiCard MrJack = pile.pop();
 	
 		
 		
@@ -99,28 +99,11 @@ public class Main {
         Image JAlibi10 = CardBack.getScaledInstance(100,200, Image.SCALE_SMOOTH);
         JAlibi backOfCard = new JAlibi(new ImageIcon(JAlibi10)); 
         
-        //Initialiser Tuiles districts
        
 	     
 	     
 	     //Initialisation des actionToken
 	     
-	     BufferedImage jetonAction4F2 = ImageIO.read(new File("Jeton1-Face1.png"));
-	        Image img = jetonAction4F2.getScaledInstance(100,100, Image.SCALE_SMOOTH);
-	        JActionToken JActionToken4Face2 = new JActionToken(new ImageIcon(img)); 
-	        JActionToken4Face2.addActionListener(new ActionListener(){
-
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					// TODO Auto-generated method stub
-					if (e.getSource() == JActionToken4Face2) {
-						ActionToken.actionToken4.Rotate(Board);
-						
-					}
-
-				}
-		    	
-		    });
 	        
 	     BufferedImage jetonAction1F2 = ImageIO.read(new File("Jeton2-Face1.png"));
 	        Image img2 = jetonAction1F2.getScaledInstance(100,100, Image.SCALE_SMOOTH);
@@ -149,7 +132,10 @@ public class Main {
 	     BufferedImage jetonAction4F1 = ImageIO.read(new File("Jeton4-Face2.png"));
 	        Image img8 = jetonAction4F1.getScaledInstance(100,100, Image.SCALE_SMOOTH);
 	        JActionToken JActionToken4Face1 = new JActionToken(new ImageIcon(img8));
-	     
+	        
+	        BufferedImage jetonAction4F2 = ImageIO.read(new File("Jeton1-Face1.png"));
+	        Image img9 = jetonAction4F2.getScaledInstance(100,100, Image.SCALE_SMOOTH);
+	        JActionToken JActionToken4Face2 = new JActionToken(new ImageIcon(img9));
 	     
 	     //Initialisation des detectives
 	     
@@ -164,7 +150,7 @@ public class Main {
 		     Sherlock.setIcon(new ImageIcon("11.png"));
 		     
 		     
-        
+        // Mise en place de l'interface graphique
         
         JFrame frame = new JFrame("Mr Jack Pocket - Le Jeu");
         frame.setVisible(true);
@@ -201,17 +187,7 @@ public class Main {
         rightPanel.add(textPanel);
         
         JButton validateButton = new JButton("Validation");
-        validateButton.addActionListener(new ActionListener(){
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-				if (e.getSource() == validateButton) {
-					Hourglass.validatedAction.addHourglass(1);
-				}
-
-			}});
-        
+               
         
         rightPanel.add(validateButton);
         
@@ -231,13 +207,16 @@ public class Main {
 		
 		//debut du jeu
 		
-		while(coursePoursuite == false) {
+		while(gameEnd == false) {
 			
+			//Donner le tour à la bonne personne
 		
 			String currentTurn = game.turnGiver(turnCounter);
 			String currentPlayer = currentTurn;
 			ArrayList <ActionToken> tokens = null;
 			turnCounterPanel = Graphics.updateTurnCounterGraphics(turnCounterPanel, turnCounter, currentPlayer);
+			
+			//Lancement des actions tokens
 			
 			if (currentTurn.equals("Detective")){
 				tokens = game.throwActionTokens();
@@ -246,6 +225,7 @@ public class Main {
 				tokens = game.turnOverActionToken();
 			}
 			
+			//Mise à jour des graphiques
 			
 			centerPanel = Graphics.updateBoardGraphics(centerPanel, Watson, Toby, Sherlock, Board, frame);
 			rightPanelAction = Graphics.updateActionTokenGraphics(rightPanelAction, tokens, JActionToken1Face1, JActionToken1Face2, JActionToken4Face2, JActionToken4Face1, JActionToken3Face2, JActionToken3Face1, JActionToken2Face2, JActionToken2Face1);
@@ -256,11 +236,13 @@ public class Main {
 		        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		        frame.setVisible(true);
 			
-
-		        JActionToken4Face2.getActionListeners();
+		        //Le tour
+		        
 			int chosenToken = game.chooseActionToken(tokens);
 			doAction(chosenToken,pile,Board,currentPlayer);
 			currentPlayer = game.swapPlayer(currentPlayer);
+			
+			//Mise à jour des graphiques
 			
 			turnCounterPanel = Graphics.updateTurnCounterGraphics(turnCounterPanel, turnCounter, currentPlayer);
 			centerPanel = Graphics.updateBoardGraphics(centerPanel, Watson, Toby, Sherlock, Board, frame);
@@ -270,21 +252,30 @@ public class Main {
 			 frame.setLocationRelativeTo(null);
 		        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		        frame.setVisible(true);
+		        
+		        //Le tour
 			
 			game.updateActionTokens(tokens, chosenToken);
 			chosenToken = game.chooseActionToken(tokens);
 			doAction(chosenToken,pile,Board,currentPlayer);
 			
+			//Mise à jour des graphiques
+			
 			centerPanel = Graphics.updateBoardGraphics(centerPanel, Watson, Toby, Sherlock, Board, frame);
 			rightPanelAction = Graphics.updateActionTokenGraphics(rightPanelAction, tokens, JActionToken1Face1, JActionToken1Face2, JActionToken4Face2, JActionToken4Face1, JActionToken3Face2, JActionToken3Face1, JActionToken2Face2, JActionToken2Face1);
-			 frame.setLocationRelativeTo(null);
+			JAlibiPanel = Graphics.updateMrJackCardGraphics(JAlibiPanel, MrJack, currentPlayer, backOfCard, Smith, Goodley, Lestrade, Bert, Pizer, Lane, Madame, Gull, Stealthy);
+			frame.setLocationRelativeTo(null);
 		        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		        frame.setVisible(true);
+		        
+		        //Le tour
 			
 			game.updateActionTokens(tokens, chosenToken);
 			chosenToken = game.chooseActionToken(tokens);
 			doAction(chosenToken,pile,Board,currentPlayer);
 			currentPlayer = game.swapPlayer(currentPlayer);
+			
+			//Mise à jour des graphiques
 			
 			turnCounterPanel = Graphics.updateTurnCounterGraphics(turnCounterPanel, turnCounter, currentPlayer);
 			centerPanel = Graphics.updateBoardGraphics(centerPanel, Watson, Toby, Sherlock, Board, frame);
@@ -303,30 +294,26 @@ public class Main {
 			
 			//Verification des suspects
 			
-			
 			ArrayList <District> Visible = game.isSuspectVisible(Board);
 			game.changeVisibleSuspects(Board, Visible, MrJack);
 			
 			
 			//Check if game is ended
 			
-			coursePoursuite = game.checkGameEnd(Board, turnCounter, Visible, MrJack);
+			coursePoursuite = game.checkGameEnd(coursePoursuite, Board, turnCounter, Visible, MrJack);
 			
 			turnCounter += 1;
 			
-		
+			
+			
 		//Show board
 		System.out.println(Board);}
 		
-		//Initialiser coursePoursuite
 		
 		
+			
 		
-		//System.out.println(Visible);
-		//System.out.println(Board);
 		
-		//Ajout des cartes alibi à l'ArrayDeque
-	
 		
 		
 		
@@ -354,6 +341,7 @@ public class Main {
 		case 2 : if (ActionToken.actionToken2.getFace() == 1) {
 			ActionToken.actionToken2.sherlockMove();
 			break;}
+			//Sherlock Moves
 		else if(ActionToken.actionToken2.getFace() == 2) {
 			if (currentPlayer.equals("MrJack")){
 				AlibiCard card = takeCard(pile);
@@ -368,7 +356,7 @@ public class Main {
 					}
 				}
 				Graphics.showAlibiCard(card);
-			}
+			}// Carte alibi
 			
 			break;
 		}
@@ -380,9 +368,12 @@ public class Main {
 		case 3 : if (ActionToken.actionToken3.getFace() == 1) {
 			ActionToken.actionToken3.moveDetective();
 			break;}
+		// Bouger Detctive
 		else if(ActionToken.actionToken3.getFace() == 2) {
 			ActionToken.actionToken3.Rotate(board);
 			break;
+			//Tourner une case
+			
 		}
 		else {
 				System.out.println("Do what you're told, or the game stops working");
@@ -391,9 +382,11 @@ public class Main {
 		case 4 : if (ActionToken.actionToken4.getFace() == 1) {
 			ActionToken.actionToken4.Rotate(board);
 			break;}
+		//Tourner une case
 		else if(ActionToken.actionToken4.getFace() == 2) {
 			ActionToken.actionToken4.switchCard(board);
 			break;
+			//echanger deux cartes
 		}
 		else {
 				System.out.println("Do what you're told, or the game stops working");
@@ -427,10 +420,7 @@ public class Main {
 	
 	}
 	
-		public static AlibiCard MrJack(ArrayDeque <AlibiCard> pile) {
-			AlibiCard MrJack = pile.pop();
-			return MrJack;
-		}
+		
 		
 		
 	
